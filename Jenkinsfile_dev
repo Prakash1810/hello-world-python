@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    stages {
+        stage('Pre-Build') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Build Stage for App') {
+            steps {
+                echo 'Build is started'
+                sh 'docker build -t 181098/test-guvi:$BUILD_NUMBER .'
+                echo 'Build is Completed'
+            }
+        }
+        stage('Test Stage for App') {
+            steps {
+                echo 'Test is started'
+                echo 'Run test case commannds which is provided devlopers'
+                
+            }
+        }
+        stage('Docker push Stage for App') {
+            steps {
+                echo 'Test is started'
+                sh 'docker push 181098/test-guvi:$BUILD_NUMBER'
+                
+            }
+        }
+        stage('Deploy Stage for App') {
+            steps {
+                echo 'Test is started'
+                echo 'deploy commands'
+                
+            }
+        }
+        stage('cleanup for App') {
+            steps {
+                echo 'Test is started'
+                sh 'docker rmi -f  181098/test-guvi:$BUILD_NUMBER'
+                
+            }
+        }
+    }
+}
